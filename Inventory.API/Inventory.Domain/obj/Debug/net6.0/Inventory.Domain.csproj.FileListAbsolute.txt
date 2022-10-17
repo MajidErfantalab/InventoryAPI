@@ -1,0 +1,12 @@
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/bin/Debug/net6.0/Inventory.Domain.deps.json
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/bin/Debug/net6.0/Inventory.Domain.dll
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/bin/Debug/net6.0/Inventory.Domain.pdb
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.csproj.AssemblyReference.cache
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.AssemblyInfoInputs.cache
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.AssemblyInfo.cs
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.csproj.CoreCompileInputs.cache
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.dll
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/refint/Inventory.Domain.dll
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/Inventory.Domain.pdb
+/Users/majiderfantalab/Documents/TestProjects/InventoryAPI/Inventory.API/Inventory.Domain/obj/Debug/net6.0/ref/Inventory.Domain.dll
