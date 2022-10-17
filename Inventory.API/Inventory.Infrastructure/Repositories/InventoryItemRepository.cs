@@ -32,7 +32,9 @@ public class InventoryItemRepository : GenericRepository < InventoryItem > , IIn
         //If the Company name is not needed
         return query.ToList();
         
-        
+        // If the company name is important I would add a new entity for the company so we could use that in other places. 
+        // We also have the company name in the product entity and I could add a navigation property or get it from the repository 
+        // I just don't have more time to put on this.
     }
 
     public async Task<IEnumerable<GetCountByInventoryResponse>> GetInventoryCountByInventory(int queryInventoryId)
@@ -48,6 +50,10 @@ public class InventoryItemRepository : GenericRepository < InventoryItem > , IIn
         
         //If the Product name is not needed
         return query.ToList();
+        
+        // If the product name is important I could add a navigation key to get the product from the TagItemReference 
+        // Or even use the repository of product to get the name 
+        // I just don't have more time to put on this.
     }
 
     public async Task<IEnumerable<GetCountPerDayResponse>> GetInventoryCountPerDay()
