@@ -1,6 +1,6 @@
 # InventoryAPI
 
-##Hi there!
+## Hi there!
 
 This is a sample project for an inventory API that handles SGTIN-96 tags.
 
