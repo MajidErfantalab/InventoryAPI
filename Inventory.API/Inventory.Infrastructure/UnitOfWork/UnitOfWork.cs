@@ -7,12 +7,16 @@ namespace Inventory.Infrastructure.UnitOfWork;
 
 public class UnitOfWork : IUnitOfWork
 {
-    private InventoryDBContext context;
-    public UnitOfWork(InventoryDBContext context) {
-        this.context = context;
-        Product = new ProductRepository(this.context);
-        Inventory = new InventoryRepository(this.context);
-        InventoryItem = new InventoryItemRepository(this.context);
+    private InventoryDBContext _context;
+    private IInventoryRepository _inventoryRepository;
+    private IProductRepository _productRepository;
+    public UnitOfWork(InventoryDBContext context, IProductRepository productRepository, IInventoryRepository inventoryRepository) {
+        _context = context;
+        _productRepository = productRepository;
+        _inventoryRepository = inventoryRepository;
+        Product = new ProductRepository(_context);
+        Inventory = new InventoryRepository(_context);
+        InventoryItem = new InventoryItemRepository(_context,_productRepository,_inventoryRepository );
     }
     public IProductRepository Product {
         get;
@@ -27,14 +31,14 @@ public class UnitOfWork : IUnitOfWork
         private set;
     }
     public void Dispose() {
-        context.Dispose();
+        _context.Dispose();
     }
     public int Save() {
-        return context.SaveChanges();
+        return _context.SaveChanges();
     }
 
     public async Task<int> SaveAsync(CancellationToken cancellationToken)
     {
-        return await context.SaveChangesAsync(cancellationToken);
+        return await _context.SaveChangesAsync(cancellationToken);
     }
 }

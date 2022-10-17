@@ -32,30 +32,40 @@ public class CreateInventoryCommandHandler : IRequestHandler<CreateInventoryComm
 
     public async Task<Result<int>> Handle(CreateInventoryCommand request, CancellationToken cancellationToken)
     {
-        var inventory = _mapper.Map<Domain.Entities.Inventory>(request);
-        await _inventoryRepository.InsertAsync(inventory);
-        foreach (var tag in request.Tags)
+        try
         {
-            var item = new InventoryItem();
-            if (tag.TryParseSgtin96(out EnumHeader header, out EnumFilter filter, out EnumPartition partition,
-                    out long companyPrefix, out long itemReference, out long serialNumber, out string errorMessage) || true)
+            var inventory = _mapper.Map<Domain.Entities.Inventory>(request);
+            await _inventoryRepository.InsertAsync(inventory);
+            foreach (var tag in request.Tags)
             {
-                var bin = tag.HexToBinary().ToString();
-                item = new InventoryItem()
+                var item = new InventoryItem();
+                var tagvalidation = tag.TryParseSgtin96(out EnumHeader header, out EnumFilter filter,
+                    out EnumPartition partition,
+                    out long companyPrefix, out long itemReference, out long serialNumber, out string errorMessage);
                 {
-                    Date = DateTime.Now,
-                    TagBinary = tag.HexToBinary().ToString(),
-                    TagHex = tag,
-                    InventoryId = inventory.Id,
-                    TagCompanyPerfix = companyPrefix != 0 ?  companyPrefix.ToString() : "000010010101111011111101",
-                    TagItemReference = itemReference != 0 ?  companyPrefix.ToString() : "11000110010100111101",
-                    TagSerialReference = serialNumber != 0 ?  companyPrefix.ToString() : "000010010101111011111101111"
-                };
-            }
+                    var bin = tag.HexToBinary().ToString();
+                    item = new InventoryItem()
+                    {
+                        Date = DateTime.Now,
+                        TagBinary = tag.HexToBinary().ToString(),
+                        TagHex = tag,
+                        InventoryId = inventory.Id,
+                        TagCompanyPerfix = companyPrefix != 0 ?  companyPrefix.ToString() : "000010010101111011111101",
+                        TagItemReference = itemReference != 0 ?  companyPrefix.ToString() : "11000110010100111101",
+                        TagSerialReference = serialNumber != 0 ?  companyPrefix.ToString() : "000010010101111011111101111"
+                    };
+                }
             
-            await _inventoryItemRepository.InsertAsync(item);
+                await _inventoryItemRepository.InsertAsync(item);
+            }
+            await _unitOfWork.SaveAsync(cancellationToken);
+            return Result<int>.Success(inventory.Id);
         }
-        await _unitOfWork.SaveAsync(cancellationToken);
-        return Result<int>.Success(inventory.Id);
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return Result<int>.Fail("Operation Failed!");
+        }
+
     }
 }
